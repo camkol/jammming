@@ -1,7 +1,7 @@
 import React from "react";
 import "./Track.css";
 
-export default function Track({ song, children }) {
+export default function Track({ moveTracks, song, children }) {
   return (
     <div className="Track">
       <div className="Track-information">
@@ -10,7 +10,9 @@ export default function Track({ song, children }) {
           {song.artist} | {song.album}
         </p>
       </div>
-      <button className="Track-action">{children} </button>
+      <button onclick={moveTracks} className="Track-action">
+        {children}
+      </button>
     </div>
   );
 }

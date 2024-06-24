@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
@@ -68,6 +68,20 @@ const songs = [
   },
 ];
 function App() {
+  const [tracks, setTracks] = useState([]);
+
+  function handleAddTracks(track) {
+    if (tracks.find((savedTrack) => savedTrack.id === track.id)) {
+      return;
+    }
+
+    setTracks((tracks) => [...tracks, track]);
+  }
+
+  function handleDeleteTrack(id) {
+    setTracks((tracks) => tracks.filter((track) => track.id !== id));
+  }
+
   return (
     <div>
       <h1>
@@ -76,8 +90,8 @@ function App() {
       <div className="App">
         <SearchBar />
         <div className="App-playlist">
-          <SearchResults songs={songs} />
-          <Playlist songs={songs} />
+          <SearchResults addTracks={handleAddTracks} songs={songs} />
+          <Playlist tracks={tracks} />
         </div>
       </div>
     </div>
