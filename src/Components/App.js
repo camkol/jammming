@@ -3,84 +3,85 @@ import "./App.css";
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
 import Playlist from "./Playlist";
-const songs = [
+const tracks = [
   // Each object represents a song with properties like id, title, artist, duration, and source URL
 
   {
     id: 0,
-    title: "Basket Case",
+    name: "Basket Case",
     artist: "Green Day",
     album: "Dookie",
   },
   {
     id: 1,
-    title: "Here is the House",
+    name: "Here is the House",
     artist: "Andain",
     album: "Bloom",
   },
   {
     id: 2,
-    title: "Like A Stone",
+    name: "Like A Stone",
     artist: "Audioslave",
     album: "Audioslave",
   },
   {
     id: 3,
-    title: "Money Trees (Feat. Jay Rock)",
+    name: "Money Trees (Feat. Jay Rock)",
     artist: "Kendrick Lamar",
     album: "good kid, m.A.A.d city",
   },
   {
     id: 4,
-    title: "One In A Million (Radio Edit)",
+    name: "One In A Million (Radio Edit)",
     artist: "Andrew Rayel Ft. Jonathan Mendelsohn",
     album: "Andrew Rayel Mini Mix",
   },
   {
     id: 5,
-    title: "Outside",
+    name: "Outside",
     artist: "Staind",
     album: "Break the Cycle",
   },
   {
     id: 6,
-    title: "Pain",
+    name: "Pain",
     artist: "Jimmy Eat World",
     album: "Futures",
   },
   {
     id: 7,
-    title: "Spiders",
+    name: "Spiders",
     artist: "System Of A Down",
     album: "System Of A Down",
   },
   {
     id: 8,
-    title: "Stir It Up",
+    name: "Stir It Up",
     artist: "Bob Marley & The Wailers",
     album: "Catch A Fire",
   },
   {
     id: 9,
-    title: "T.N.T.",
+    name: "T.N.T.",
     artist: "AC/DC",
     album: "High Voltage",
   },
 ];
 function App() {
-  const [tracks, setTracks] = useState([]);
+  const [playlistName, setPlaylistName] = useState("");
+  const [playlistTracks, setPlaylistTracks] = useState([]);
 
   function handleAddTracks(track) {
-    if (tracks.find((savedTrack) => savedTrack.id === track.id)) {
+    if (playlistTracks.find((savedTrack) => savedTrack.id === track.id)) {
       return;
     }
 
-    setTracks((tracks) => [...tracks, track]);
+    setPlaylistTracks((tracks) => [...tracks, track]);
     console.log(track);
   }
 
   function handleDeleteTrack(track) {
-    setTracks((tracks) =>
+    setPlaylistTracks((tracks) =>
       tracks.filter((savedtrack) => savedtrack.id !== track.id)
     );
   }
@@ -93,8 +94,12 @@ function App() {
       <div className="App">
         <SearchBar />
         <div className="App-playlist">
-          <SearchResults addTracks={handleAddTracks} songs={songs} />
-          <Playlist tracks={tracks} removeTracks={handleDeleteTrack} />
+          <SearchResults addTracks={handleAddTracks} tracks={tracks} />
+          <Playlist
+            playlistName={playlistName}
+            playlistTracks={playlistTracks}
+            removeTracks={handleDeleteTrack}
+          />
         </div>
       </div>
     </div>
