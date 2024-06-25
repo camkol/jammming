@@ -76,10 +76,13 @@ function App() {
     }
 
     setTracks((tracks) => [...tracks, track]);
+    console.log(track);
   }
 
-  function handleDeleteTrack(id) {
-    setTracks((tracks) => tracks.filter((track) => track.id !== id));
+  function handleDeleteTrack(track) {
+    setTracks((tracks) =>
+      tracks.filter((savedtrack) => savedtrack.id !== track.id)
+    );
   }
 
   return (
@@ -91,7 +94,7 @@ function App() {
         <SearchBar />
         <div className="App-playlist">
           <SearchResults addTracks={handleAddTracks} songs={songs} />
-          <Playlist tracks={tracks} />
+          <Playlist tracks={tracks} removeTracks={handleDeleteTrack} />
         </div>
       </div>
     </div>

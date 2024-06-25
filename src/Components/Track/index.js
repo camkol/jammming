@@ -10,7 +10,7 @@ export default function Track({ moveTracks, song, children }) {
           {song.artist} | {song.album}
         </p>
       </div>
-      <button onclick={moveTracks} className="Track-action">
+      <button onClick={() => moveTracks(song)} className="Track-action">
         {children}
       </button>
     </div>
