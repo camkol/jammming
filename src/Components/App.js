@@ -86,6 +86,10 @@ function App() {
     );
   }
 
+  function handleUpdatePlaylistName(name) {
+    setPlaylistName(name);
+  }
+
   return (
     <div>
       <h1>
@@ -99,6 +103,7 @@ function App() {
             playlistName={playlistName}
             playlistTracks={playlistTracks}
             onRemove={handleRemoveTrack}
+            onNameChange={handleUpdatePlaylistName}
           />
         </div>
       </div>
