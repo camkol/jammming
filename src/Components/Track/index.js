@@ -1,8 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Track.css";
 
-export default function Track({ moveTracks, song }) {
-  const [isRemoval, setIsRemoval] = useState(false);
+export default function Track({ song, isRemoval, onAdd, onRemove }) {
+  const addTrack = (track) => {
+    onAdd(track);
+  };
+  const removeTrack = (track) => {
+    onRemove(track);
+  };
+  const renderAction = () => {
+    return (
+      <button
+        className="Track-action"
+        onClick={isRemoval ? () => removeTrack(song) : () => addTrack(song)}
+      >
+        {isRemoval ? "-" : "+"}
+      </button>
+    );
+  };
   return (
     <div className="Track">
       <div className="Track-information">
@@ -11,9 +26,8 @@ export default function Track({ moveTracks, song }) {
           {song.artist} | {song.album}
         </p>
       </div>
-      <button onClick={() => moveTracks(song)} className="Track-action">
-        {isRemoval ? "-" : "+"}{" "}
-      </button>
+
+      {renderAction()}
     </div>
   );
 }

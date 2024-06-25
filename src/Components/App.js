@@ -80,7 +80,7 @@ function App() {
     console.log(track);
   }
 
-  function handleDeleteTrack(track) {
+  function handleRemoveTrack(track) {
     setPlaylistTracks((tracks) =>
       tracks.filter((savedtrack) => savedtrack.id !== track.id)
     );
@@ -94,11 +94,11 @@ function App() {
       <div className="App">
         <SearchBar />
         <div className="App-playlist">
-          <SearchResults addTracks={handleAddTracks} tracks={tracks} />
+          <SearchResults onAdd={handleAddTracks} tracks={tracks} />
           <Playlist
             playlistName={playlistName}
             playlistTracks={playlistTracks}
-            removeTracks={handleDeleteTrack}
+            onRemove={handleRemoveTrack}
           />
         </div>
       </div>

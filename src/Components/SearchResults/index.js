@@ -2,11 +2,11 @@ import React from "react";
 import "./SearchResults.css";
 import TrackList from "../TrackList";
 
-export default function SearchResults({ tracks, addTracks }) {
+export default function SearchResults({ tracks, onAdd }) {
   return (
     <div className="SearchResults">
       <h2>Results</h2>
-      <TrackList moveTracks={addTracks} tracks={tracks} />
+      <TrackList onAdd={onAdd} tracks={tracks} isRemoval={false} />
     </div>
   );
 }
