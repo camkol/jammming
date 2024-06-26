@@ -107,7 +107,7 @@ function App() {
         Ja<span className="highlight">mmm</span>ing
       </h1>
       <div className="App">
-        <SearchBar />
+        <SearchBar onSearch={handleSearch} />
         <div className="App-playlist">
           <SearchResults onAdd={handleAddTracks} tracks={tracks} />
           <Playlist
