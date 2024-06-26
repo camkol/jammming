@@ -68,7 +68,7 @@ const tracks = [
   },
 ];
 function App() {
-  const [playlistName, setPlaylistName] = useState("");
+  const [playlistName, setPlaylistName] = useState("New Playlist");
   const [playlistTracks, setPlaylistTracks] = useState([]);
 
   function handleAddTracks(track) {
@@ -90,6 +90,17 @@ function App() {
     setPlaylistName(name);
   }
 
+  function handleSavePlaylist() {
+    const trackURIs = playlistTracks.map((track) => track.uri);
+    console.log(trackURIs);
+    setPlaylistName("New Playlist");
+    setPlaylistTracks([]);
+  }
+
+  function handleSearch(search) {
+    console.log(search);
+  }
+
   return (
     <div>
       <h1>
@@ -104,6 +115,7 @@ function App() {
             playlistTracks={playlistTracks}
             onRemove={handleRemoveTrack}
             onNameChange={handleUpdatePlaylistName}
+            onSave={handleSavePlaylist}
           />
         </div>
       </div>

@@ -7,15 +7,22 @@ export default function Playlist({
   playlistTracks,
   onRemove,
   onNameChange,
+  onSave,
 }) {
   const handleNameChange = (e) => {
     onNameChange(e.target.value);
   };
   return (
     <div className="Playlist">
-      <input defaultValue={"New Playlist"} onChange={handleNameChange} />
+      <input
+        // defaultValue={"New Playlist"}
+        value={playlistName}
+        onChange={handleNameChange}
+      />
       <TrackList tracks={playlistTracks} onRemove={onRemove} isRemoval={true} />
-      <button className="Playlist-save">SAVE TO SPOTIFY</button>
+      <button className="Playlist-save" onClick={onSave}>
+        SAVE TO SPOTIFY
+      </button>
     </div>
   );
 }
