@@ -3,73 +3,76 @@ import "./App.css";
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
 import Playlist from "./Playlist";
-const tracks = [
-  // Each object represents a song with properties like id, title, artist, duration, and source URL
+import { Spotify } from "../util/spotify";
 
-  {
-    id: 0,
-    name: "Basket Case",
-    artist: "Green Day",
-    album: "Dookie",
-  },
-  {
-    id: 1,
-    name: "Here is the House",
-    artist: "Andain",
-    album: "Bloom",
-  },
-  {
-    id: 2,
-    name: "Like A Stone",
-    artist: "Audioslave",
-    album: "Audioslave",
-  },
-  {
-    id: 3,
-    name: "Money Trees (Feat. Jay Rock)",
-    artist: "Kendrick Lamar",
-    album: "good kid, m.A.A.d city",
-  },
-  {
-    id: 4,
-    name: "One In A Million (Radio Edit)",
-    artist: "Andrew Rayel Ft. Jonathan Mendelsohn",
-    album: "Andrew Rayel Mini Mix",
-  },
-  {
-    id: 5,
-    name: "Outside",
-    artist: "Staind",
-    album: "Break the Cycle",
-  },
-  {
-    id: 6,
-    name: "Pain",
-    artist: "Jimmy Eat World",
-    album: "Futures",
-  },
-  {
-    id: 7,
-    name: "Spiders",
-    artist: "System Of A Down",
-    album: "System Of A Down",
-  },
-  {
-    id: 8,
-    name: "Stir It Up",
-    artist: "Bob Marley & The Wailers",
-    album: "Catch A Fire",
-  },
-  {
-    id: 9,
-    name: "T.N.T.",
-    artist: "AC/DC",
-    album: "High Voltage",
-  },
-];
+// const tracks = [
+//   // Each object represents a song with properties like id, title, artist, duration, and source URL
+
+//   {
+//     id: 0,
+//     name: "Basket Case",
+//     artist: "Green Day",
+//     album: "Dookie",
+//   },
+//   {
+//     id: 1,
+//     name: "Here is the House",
+//     artist: "Andain",
+//     album: "Bloom",
+//   },
+//   {
+//     id: 2,
+//     name: "Like A Stone",
+//     artist: "Audioslave",
+//     album: "Audioslave",
+//   },
+//   {
+//     id: 3,
+//     name: "Money Trees (Feat. Jay Rock)",
+//     artist: "Kendrick Lamar",
+//     album: "good kid, m.A.A.d city",
+//   },
+//   {
+//     id: 4,
+//     name: "One In A Million (Radio Edit)",
+//     artist: "Andrew Rayel Ft. Jonathan Mendelsohn",
+//     album: "Andrew Rayel Mini Mix",
+//   },
+//   {
+//     id: 5,
+//     name: "Outside",
+//     artist: "Staind",
+//     album: "Break the Cycle",
+//   },
+//   {
+//     id: 6,
+//     name: "Pain",
+//     artist: "Jimmy Eat World",
+//     album: "Futures",
+//   },
+//   {
+//     id: 7,
+//     name: "Spiders",
+//     artist: "System Of A Down",
+//     album: "System Of A Down",
+//   },
+//   {
+//     id: 8,
+//     name: "Stir It Up",
+//     artist: "Bob Marley & The Wailers",
+//     album: "Catch A Fire",
+//   },
+//   {
+//     id: 9,
+//     name: "T.N.T.",
+//     artist: "AC/DC",
+//     album: "High Voltage",
+//   },
+// ];
 function App() {
   const [playlistName, setPlaylistName] = useState("New Playlist");
   const [playlistTracks, setPlaylistTracks] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   function handleAddTracks(track) {
     if (playlistTracks.find((savedTrack) => savedTrack.id === track.id)) {
@@ -97,8 +100,10 @@ function App() {
     setPlaylistTracks([]);
   }
 
-  function handleSearch(search) {
-    console.log(search);
+  function handleSearch(term) {
+    Spotify.search(term).then((tracks) => {
+      setSearchResults(tracks);
+    });
   }
 
   return (
@@ -109,7 +114,7 @@ function App() {
       <div className="App">
         <SearchBar onSearch={handleSearch} />
         <div className="App-playlist">
-          <SearchResults onAdd={handleAddTracks} tracks={tracks} />
+          <SearchResults onAdd={handleAddTracks} tracks={searchResults} />
           <Playlist
             playlistName={playlistName}
             playlistTracks={playlistTracks}

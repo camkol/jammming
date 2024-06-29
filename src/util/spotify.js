@@ -17,7 +17,9 @@ export const Spotify = {
       const expiresIn = Number(expiresInMatch[1]);
 
       // Clear access token from the URL
+      // Set a timeout to clear the access token after it expires
       window.setTimeout(() => (accessToken = ""), expiresIn * 1000);
+      // Clear the parameters from the URL
       window.history.pushState("Access Token", null, "/");
 
       return accessToken;
@@ -28,6 +30,29 @@ export const Spotify = {
     }
   },
   search(term) {
-    return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`);
+    const url = `https://api.spotify.com/v1/search?type=track&q=${term}`;
+    return fetch(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Fetch Failed");
+        }
+        return response.json();
+      })
+      .then((jsonResponse) => {
+        if (!jsonResponse) {
+          return [];
+        }
+        return jsonResponse.tracks.items.map((track) => ({
+          id: track.id,
+          name: track.name,
+          artist: track.artists[0].name,
+          album: track.album.name,
+          uri: track.uri,
+        }));
+      });
   },
 };
