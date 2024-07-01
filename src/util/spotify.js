@@ -1,6 +1,6 @@
 let accessToken;
 const clientID = "8c3e2c02caa34e698f8961f59bf0c627";
-const redirectUri = "http://localhost:3000/";
+const redirectUri = "https://jammming624.netlify.app/callback";
 
 export const Spotify = {
   getAccessToken() {
@@ -30,10 +30,11 @@ export const Spotify = {
     }
   },
   search(term) {
+    const token = this.getAccessToken();
     const url = `https://api.spotify.com/v1/search?type=track&q=${term}`;
     return fetch(url, {
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
@@ -43,7 +44,7 @@ export const Spotify = {
         return response.json();
       })
       .then((jsonResponse) => {
-        if (!jsonResponse) {
+        if (!jsonResponse || !jsonResponse.tracks) {
           return [];
         }
         return jsonResponse.tracks.items.map((track) => ({
