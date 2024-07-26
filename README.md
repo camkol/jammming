@@ -3,6 +3,8 @@
 ## Table of contents
 
 - [Overview](#overview)
+  - [Objective](#objective)
+  - [Background](#background)
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
   - [Links](#links)
@@ -13,6 +15,14 @@
 - [Author](#author)
 
 ## Overview
+
+### Objective
+
+To give users the ability to update all of their Spotify playlists and save them to Spotify.
+
+### Background
+
+Currently, Jammming supports the ability to create one new playlist at a time and save it to Spotify. However, updating an existing playlist is not supported. With over 5 million playlists created or edited daily on Spotify, this is key functionality to support.
 
 ### The challenge
 
@@ -38,7 +48,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [View](https://ravenous2-3.netlify.app/)
+- Live Site URL: [View](https://jammming624.netlify.app/)
 
 ## My process
 
@@ -75,11 +85,16 @@ Users should be able to:
 
 ### What I learned
 
-This is a project testing all I know on react
+This is a project testing all I know on react. I used CRUD methods for API operations.
 
 ### Continued development
 
-Maybe used for reference.
+- Include preview samples for each track
+- Only display songs not currently present in the playlist in the search results
+- Add a loading screen while playlist is saving
+- Update the access token logic to expire at exactly the right time, instead of setting expiration from when the user initiates their next search
+- After user redirect on login, restoring the search term from before the redirect
+- Ensure playlist information doesn’t get cleared if a user has to refresh their access token
 
 ## Author
 
