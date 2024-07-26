@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# Jammming
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of contents
 
-## Available Scripts
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+- [Author](#author)
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+### The challenge
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Users should be able to:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Search for Businesses: Users can enter a search term (like a type of cuisine) and a location to find businesses matching their criteria.
 
-### `npm test`
+- Sort Results: They can choose how the results are sorted (by best match, highest rated, or most reviewed).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- View Business Listings: Once the search is executed, users can see a list of businesses that match their search criteria, including images, names, addresses, ratings, and review counts.
 
-### `npm run build`
+- Handle Errors: The app handles errors gracefully, displaying an error message if there's an issue with the Yelp API or any other part of the process.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Loading State: During the search, users see a loading indicator to know that the app is fetching data.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Responsive Design: The app is designed to be responsive, ensuring it works well on different screen sizes and devices.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- User-Friendly Interface: Overall, the app provides a clean and user-friendly interface that makes it easy for users to search for and explore different businesses based on their preferences.
 
-### `npm run eject`
+### Screenshot
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![](./screen.jpg)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Links
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Live Site URL: [View](https://ravenous2-3.netlify.app/)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## My process
 
-## Learn More
+- **Create Static Components**: Build the basic structure of your app using React components, including static versions of SearchBar, SearchResults, Playlist, and TrackList.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Pass Down Search Result and Render Result List**: Implement logic to pass search results from the parent component to the SearchResults component and render a list of tracks.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Pass Down Playlist to TrackList**: Ensure that the current playlist is passed down as props to the TrackList component so it can render the tracks in the playlist.
 
-### Code Splitting
+- **Add Tracks to a Playlist**: Create functionality that allows users to add tracks from the search results to their playlist by clicking an "Add" button.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Remove Tracks from a Playlist**: Implement a feature that enables users to remove tracks from their playlist by clicking a "Remove" button.
 
-### Analyzing the Bundle Size
+- **Change the Name of a Playlist**: Add an input field that allows users to change the name of their playlist and update the state accordingly.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Create a Method that Saves the Playlist to a User's Account**: Develop a method that uses the Spotify API to save the user's playlist to their Spotify account.
 
-### Making a Progressive Web App
+- **Hook up Search Bar to Spotify Search**: Connect the SearchBar component to the Spotify API so that users can search for tracks and get results displayed in the SearchResults component.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Obtain a Spotify Access Token**: Implement authentication logic to obtain an access token from Spotify, allowing you to make authorized requests to the Spotify API.
 
-### Advanced Configuration
+- **Implement Spotify Search Request**: Write the logic to make a search request to the Spotify API using the access token and fetch the search results.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Save a User's Playlist**: Use the Spotify API to save the user's playlist, including creating a new playlist and adding tracks to it, and then update the UI to reflect the saved state.
 
-### Deployment
+### Built with
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- Mobile-Responsive Design
+- JavaScript - Scripting language
+- [React](https://reactjs.org/) - JS library
 
-### `npm run build` fails to minify
+### What I learned
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This is a project testing all I know on react
+
+### Continued development
+
+Maybe used for reference.
+
+## Author
+
+- Website - [Cameron Howze](https://camkol.github.io/)
+- Frontend Mentor - [@camkol](https://www.frontendmentor.io/profile/camkol)
+- GitHub- [@camkol](https://github.com/camkol)
+- LinkedIn - [@cameron-howze](https://www.linkedin.com/in/cameron-howze-28a646109/)
+- E-Mail - [cameronhowze4@outlook.com](mailto:cameronhowze4@outlook.com)

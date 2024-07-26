@@ -28,7 +28,7 @@
   border-radius: 54px;
   border-width: 0px;
   margin-top: 1.27rem;
-  background-color: #6c41ec;
+  background-color: #4c41ec;
   text-align: center;
   font-size: 0.83rem;
   transition: background-color 0.25s;
@@ -37,7 +37,7 @@
 }
 
 .Playlist-save:hover {
-  background-color: rgba(108, 65, 233, 0.7);
+  background-color: rgba(68, 65, 233, 0.7);
 }
 
 ::-webkit-scrollbar {
