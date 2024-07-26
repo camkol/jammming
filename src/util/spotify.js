@@ -29,6 +29,7 @@ export const Spotify = {
       window.location = authUrl;
     }
   },
+
   search(term) {
     const token = this.getAccessToken();
     const url = `https://api.spotify.com/v1/search?type=track&q=${term}`;
@@ -56,6 +57,7 @@ export const Spotify = {
         }));
       });
   },
+
   async savePlaylist(name, trackURIs) {
     if (!name || !trackURIs.length) {
       return;
@@ -69,7 +71,6 @@ export const Spotify = {
 
     let userID;
 
-    // Get user ID
     try {
       const response = await fetch("https://api.spotify.com/v1/me", {
         headers,
@@ -81,16 +82,32 @@ export const Spotify = {
       return;
     }
 
+    let playlistID;
+
     try {
       const response = await fetch(
         `https://api.spotify.com/v1/users/${userID}/playlists`,
-        { method: "POST", headers: headers }
+        {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify({ name }),
+        }
       );
       const jsonResponse = await response.json();
-      const playlistID = jsonResponse.id;
+      playlistID = jsonResponse.id;
     } catch (err) {
-      console.error("Failed to get playlist ID");
+      console.error("Failed to create playlist:", err);
       return;
+    }
+
+    try {
+      await fetch(`https://api.spotify.com/v1/playlists/${playlistID}/tracks`, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify({ uris: trackURIs }),
+      });
+    } catch (err) {
+      console.error("Failed to add tracks to playlist:", err);
     }
   },
 };
