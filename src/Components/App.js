@@ -93,11 +93,16 @@ function App() {
     setPlaylistName(name);
   }
 
-  function handleSavePlaylist() {
+  async function handleSavePlaylist() {
     const trackURIs = playlistTracks.map((track) => track.uri);
     console.log(trackURIs);
-    setPlaylistName("New Playlist");
-    setPlaylistTracks([]);
+    try {
+      await Spotify.savePlaylist(playlistName, trackURIs);
+      setPlaylistName("New Playlist");
+      setPlaylistTracks([]);
+    } catch (error) {
+      console.error("Failed to save playlist:", error);
+    }
   }
 
   function handleSearch(term) {
