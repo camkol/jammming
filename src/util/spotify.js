@@ -1,5 +1,5 @@
 let accessToken;
-const clientID = "8c3e2c02caa34e698f8961f59bf0c627";
+const clientID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const redirectUri = "https://jammming624.netlify.app/";
 
 export const Spotify = {
